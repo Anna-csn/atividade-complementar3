@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade Complementar 3</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+
+/* Pensando em aplicar os conceitos de ciclos,o exercicio foi feito pensando em um cenário de uma loja,
+onde o usuário deve inserir o valor total da compra e de acordo com o valor gasto são aplicados descontos 
+sobre o total, em seguida é perguntado ao usuário o número de vezes que deseja parcelar e por fim é mostrado 
+o valor de cada parcela de acordo com o escolhido pelo usuário em um alert.
+   Todas as informações inseridas pelo usuário são exibidas no console
+   Os ciclos foram aplicados na validação dos dados informados pelo usuário verificando se os valores inseridos
+   não são iguais ou menores a zero tanto no valor da compra como no número de parcelas, também foi aplicado no 
+   momento de exibir o número e valores das parcelas no alert.
+*/
+
+
+
+function informarValorTotalDaCompra(){
+        var valorTotal = prompt("Digite o valor total da compra")
+        while(valorTotal <=0 ){
+            alert("Valor inválido, por favor informe um valor válido")
+            valorTotal = prompt("Digite o valor total da compra")
+
+    }
+    console.log("O valor total da compra foi: " + valorTotal)
+    return parseFloat(valorTotal.replace(",", "."))
+    
+}
+
+    function descontoDoValorTotal(valor){
+        if(valor>= 0 && valor <= 500){
+           desconto = 0.1 * valor
+           valorComDesconto = valor - desconto
+        }else if(valor > 500 && valor <= 800 ){
+            desconto = 0.25 * valor
+            valorComDesconto = valor - desconto
+        }
+        else if(valor > 800 && valor <= 1100){
+            desconto = 0.40 * valor
+            valorComDesconto = valor - desconto
+        } else{
+            desconto = 0.50 * valor
+            valorComDesconto = valor - desconto
+        }
+        console.log("O valor da compra com desconto foi " + valorComDesconto.toFixed(2))
+        return valorComDesconto.toFixed(2)
+    
+    }
+
+   
+    function obterQuantidadeDeParcelas(){
+        var numeroParcelas = prompt("Informe o número de vezes que deseja parcelar")
+        while (numeroParcelas <=0){
+            alert("Número inválido, informe um número válido de parcelas")
+            numeroParcelas = prompt("Informe o número de vezes que deseja parcelar")
+        }
+        console.log("A compra será parcelada em " + numeroParcelas + " vezes")
+        return parseInt(numeroParcelas)
+    }
+
+    function calcularValorDasParcelas(total ,parcelas){
+        valorCadaParcela = total/ parcelas
+        console.log ("Cada parcela ficará no valor de: " + valorCadaParcela.toFixed(2))
+        return valorCadaParcela
+        
+    }
+
+    function exibirParcelas(numeroDeParcelas, valorDaParcela){
+        var listaParcelas = "Detalhes das parcelas:\n\n"
+        for (let i = 1; i <= numeroDeParcelas; i++){
+            listaParcelas += "Parcela " + i + ": R$ " + valorDaParcela.toFixed(2) + "\n";
+        }
+        alert(listaParcelas)
+    }
+
+
+
+
+const valorTotalCompra = informarValorTotalDaCompra()
+const descontoDaCompra = descontoDoValorTotal(valorTotalCompra)
+const quantidadeParcelas = obterQuantidadeDeParcelas()
+const calculoParcelas = calcularValorDasParcelas(descontoDaCompra, quantidadeParcelas)
+const mostraParcelas = exibirParcelas(quantidadeParcelas,calculoParcelas)
+
+ 
+
+
+
+
+</script>
